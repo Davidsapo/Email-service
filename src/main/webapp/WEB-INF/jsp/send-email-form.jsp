@@ -1,29 +1,44 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: david.sapo
-  Date: 30.09.2021
-  Time: 14:03
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Email Service</title>
 </head>
 <body>
 
-<h2>Send e-mail to someone@example.com:</h2>
+<h2>Email client by David Sapoznik</h2>
 
-<form action="mailto:someone@example.com" method="post" enctype="text/plain">
-    Name:<br>
-    <input type="text" name="name"><br>
-    E-mail:<br>
-    <input type="text" name="mail"><br>
-    Comment:<br>
-    <input type="text" name="comment" size="50"><br><br>
-    <input type="submit" value="Send">
-    <input type="reset" value="Reset">
-</form>
+<div>
+    <form:form modelAttribute="form" method="POST" enctype="multipart/form-data">
+        <tableo>
+            <tr>
+                <td>Email</td><br>
+                <td><form:input path="email"/></td><br>
+            </tr>
+            <tr>
+                <td>Subject</td><br>
+                <td><form:input path="subject"/></td><br>
+            </tr>
+            <tr>
+                <td>Body</td><br>
+                <td><form:textarea path="body"/></td><br>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <button type="submit" value="Submit">Send</button>
+                </td>
+                <td>
+                    <button type="reset" value="Reset">Reset</button>
+                </td>
+            </tr>
+        </tableo>
+    </form:form>
+</div>
 
 </body>
 </html>
