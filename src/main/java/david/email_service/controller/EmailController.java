@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -34,6 +35,11 @@ public class EmailController {
     public RedirectView sendEmail(@Valid @ModelAttribute SendEmailRequest request) {
         emailSenderService.sendEmail(request.getEmail(), request.getSubject(), request.getBody());
         return new RedirectView("/email-service/form");
+    }
+
+    @RequestMapping("/error")
+    public String handleError(HttpServletRequest request) {
+        return "error";
     }
 
 }
