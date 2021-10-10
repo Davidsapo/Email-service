@@ -38,7 +38,7 @@ public class EmailController {
     }
 
     @RequestMapping("/error")
-    public String handleError(HttpServletRequest request) {
+    public String handleError() {
         return "error";
     }
 

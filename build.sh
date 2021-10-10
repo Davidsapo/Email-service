@@ -1,0 +1,1 @@
+docker build --tag email-service-image .
