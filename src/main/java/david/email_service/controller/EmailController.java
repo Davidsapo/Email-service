@@ -1,7 +1,7 @@
 package david.email_service.controller;
 
+import david.email_service.facade.EmailSenderFacade;
 import david.email_service.request.SendEmailRequest;
-import david.email_service.service.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
+ * Email Controller
+ *
  * @author dsapozhnik
  */
 
@@ -23,7 +24,7 @@ import javax.validation.Valid;
 public class EmailController {
 
     @Autowired
-    private EmailSenderService emailSenderService;
+    private EmailSenderFacade emailSenderFacade;
 
     @GetMapping("/form")
     public String emailForm(Model model) {
@@ -32,8 +33,8 @@ public class EmailController {
     }
 
     @PostMapping("/form")
-    public RedirectView sendEmail(@Valid @ModelAttribute SendEmailRequest request) {
-        emailSenderService.sendEmail(request.getEmail(), request.getSubject(), request.getBody());
+    public RedirectView sendEmail(@ModelAttribute @Valid SendEmailRequest request) {
+        emailSenderFacade.sendEmail(request);
         return new RedirectView("/email-service/form");
     }
 
