@@ -1,7 +1,7 @@
 # Email service
 A simple email client.
 ### Get started
-To start application in Docker:
+To start an application in Docker:
 * download source code
 * run build.sh
 * run run.sh
